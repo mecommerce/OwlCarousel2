@@ -1896,7 +1896,7 @@
 
 		$elements.each($.proxy(function(index, element) {
 			var $element = $(element), image,
-				url = (window.devicePixelRatio > 1 && $element.attr('data-src-retina')) || $element.attr('data-src');
+				url = (window.devicePixelRatio > 1 && $element.attr('data-src-retina')) || $element.attr('data-src'),
 				sizes = $element.attr('data-sizes'),
 				srcset = $element.attr('data-srcset');
 
