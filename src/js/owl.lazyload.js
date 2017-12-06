@@ -91,8 +91,8 @@
 		$elements.each($.proxy(function(index, element) {
 			var $element = $(element), image,
 				url = (window.devicePixelRatio > 1 && $element.attr('data-src-retina')) || $element.attr('data-src');
-				sizes = $element.attr('data-sizes');
-				srcset = $element.attr('data-srcset')
+				sizes = $element.attr('data-sizes'),
+				srcset = $element.attr('data-srcset');
 
 			this._core.trigger('load', { element: $element, url: url }, 'lazy');
 
@@ -100,7 +100,9 @@
 				$element.one('load.owl.lazy', $.proxy(function() {
 					$element.css('opacity', 1);
 					this._core.trigger('loaded', { element: $element, url: url }, 'lazy');
-				}, this)).attr('src', url).attr('srcset', srcset).attr('sizes', sizes);
+				}, this)).attr('src', url);
+				$element.attr('srcset', srcset);
+				$element.attr('sizes', sizes);
 			} else {
 				image = new Image();
 				image.onload = $.proxy(function() {
